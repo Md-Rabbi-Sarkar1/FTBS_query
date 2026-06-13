@@ -56,3 +56,16 @@ where full_name like 'Tanvir%' or full_name like '%Haque%'
 select booking_id, user_id, match_id, coalesce(payment_status,'Action Required') as systmatic_status
 from bookings
 where payment_status is null
+--4
+select b.booking_id,u.full_name,m.fixture,b.total_cost
+from bookings b 
+inner join users u on b.user_id =u.user_id
+inner join  matches m on b.match_id = m.match_id
+--5
+select u.user_id , u.full_name, b.booking_id
+from users u 
+left join bookings b on u.user_id=b.user_id
+--6
+select booking_id,match_id,total_cost
+from bookings
+where total_cost >(select avg(total_cost) from bookings)
