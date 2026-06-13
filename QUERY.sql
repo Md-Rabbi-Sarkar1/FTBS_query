@@ -69,3 +69,6 @@ left join bookings b on u.user_id=b.user_id
 select booking_id,match_id,total_cost
 from bookings
 where total_cost >(select avg(total_cost) from bookings)
+--7
+select match_id,fixture,base_ticket_price
+from matches order by base_ticket_price  desc offset 1 limit 2
